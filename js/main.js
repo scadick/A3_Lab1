@@ -19,7 +19,7 @@
 
  console.log(this.id);
 
- }
+ });
  swapModel.addEventListener('click', function() {swapModel(index, objectIndex);}, false);
 
 
