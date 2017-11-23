@@ -5,22 +5,29 @@
    changePrice = document.querySelector('.priceInfo'),
    changeDescription = document.querySelector('.modelDetails'),
    appliedClass;
- }
 
  function swapModel () {
+	 // swap Model of car
  let modelSwap = document.querySelector('.modelInfo');
  let objectIndex = carData[this.id];
 
- changeModel.firstChild.nodeValue.objectIndex.modelName;
- changePrice.firstChild.nodeValue.objectIndex.priceInfo;
- changeDescription.firstChild.nodeValue.objectIndex.modelDetails;
+ changeModel.firstChild.nodeValue = objectIndex.modelName;
+ changePrice.firstChild.nodeValue = objectIndex.priceInfo;
+ changeDescription.firstChild.nodeValue = objectIndex.modelDetails;
 
  appliedClass = this.id;
 
  console.log(this.id);
-
+ 	//opacity changes for images
+	changeImg.forEach(function(element, index){
+	element.classList.remove("focusMini");
+	});
+	this.classList.add("focusMini");
+ } 
+ changeImg.forEach(function(element, index){
+	
+	element.addEventListener('click', swapModel, false);
+	
  });
- swapModel.addEventListener('click', function() {swapModel(index, objectIndex);}, false);
-
 
 })();
