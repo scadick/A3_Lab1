@@ -7,25 +7,28 @@
     // fetchAPI uses the Promise API (new for ES6)
     //fetch(url) // this does the AJAX call
     //    .then((resp) => resp.json())
-    //    .then((data) => { processResults(data); }
+    //    .then((data) => { processResults(data); })
     //    .catch(function(error) {
     //      console.log(error);
     //    });
-      fetch(url) // this does the AJAX call
-          .then((resp) => resp.json())
-          .then(({ modelName, pricing, modelDetails })) => {
-          let model = document.querySelector('.modelName').textContent = modelName;
-          let price = document.querySelector('.priceInfo').innerHTML = pricing;
-          let desc = document.querySelector('.modelDetails').textContent = modelDetails;
 
-          carButtons.forEach(function(car, index) {
-            car.classList.add('nonActive');
+    fetch(url) // this does the AJAX call
+      .then((resp) => resp.json())
+      .then(({ modelName, pricing, modelDetails, model })) => {
+            let model = document.querySelector('.modelName').textContent = modelName;
+            let price = document.querySelector('.priceInfo').innerHTML = pricing;
+            let desc = document.querySelector('.modelDetails').textContent = modelDetails;
+
+            carButtons.forEach(function(car, index) {
+              car.classList.add('nonActive');
             });
+            // the backticks are a new ES6 thing called a template string (look it up)
             document.querySelector(`#${data.model}`).classList.remove('nonActive');
           }
-          .catch(function(error) {
-            console.log(error);
-          });
+      )
+      .catch(function(error) {
+        console.log(error);
+      });
   }
   // processResult is run when the AJAX call is complete and we have the data back. It gets called on line 36, and the data variable gets passed in from that function (it's the JavaScript object we got from the database)
   //function processResult(data) {
