@@ -11,21 +11,23 @@
     //    .catch(function(error) {
     //      console.log(error);
     //    });
-      fetch(url) // this does the AJAX call
-          .then((resp) => resp.json())
-          .then(({ modelName, pricing, modelDetails })) => {
-          let model = document.querySelector('.modelName').textContent = modelName;
-          let price = document.querySelector('.priceInfo').innerHTML = pricing;
-          let desc = document.querySelector('.modelDetails').textContent = modelDetails;
+    fetch(url) // do our ajax call
+    .then((resp) => resp.json()) // convert the response to JSON (built-in method)
+    .then(({ modelName, pricing, modelDetails, model }) => {
+      //const { modelName, pricing, modelDetails } = data;
 
-          carButtons.forEach(function(car, index) {
-            car.classList.add('nonActive');
-            });
-            document.querySelector(`#${data.model}`).classList.remove('nonActive');
-          }
-          .catch(function(error) {
-            console.log(error);
-          });
+      let carModel = document.querySelector('.modelName').textContent = modelName;
+      let price = document.querySelector('.priceInfo').innerHTML = pricing;
+      let desc = document.querySelector('.modelDetails').textContent = modelDetails;
+
+      // refactor this with an arrow function (shorthand function declaration)
+      carButtons.forEach(car => car.classList.add('nonActive'));
+
+      document.querySelector(`#${model}`).classList.remove('nonActive');
+     }) // then do the process result function
+    .catch(function(error) {
+      console.log(error); // catch any errors and show them in the console
+    });
   }
   // processResult is run when the AJAX call is complete and we have the data back. It gets called on line 36, and the data variable gets passed in from that function (it's the JavaScript object we got from the database)
   //function processResult(data) {
@@ -48,7 +50,6 @@
     //
     // template strings are new in ES6; among other things, they let you dig in to data and pull out values, create HTML blobs in JavaScript files, and generally make life a lot easier for JS developers who have had to write hacky ways to do things like this
     //document.querySelector(`#${data.model}`).classList.remove('nonActive');
-  }
 
   // loop through and add event handling to each car thumbnail on the page. on a click, they'll fire the AJAX call at the top of the script file.
   carButtons.forEach(function(car, index) {
