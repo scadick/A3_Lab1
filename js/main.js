@@ -13,7 +13,7 @@
     //    });
     fetch(url) // do our ajax call
     .then((resp) => resp.json()) // convert the response to JSON (built-in method)
-    .then(({ modelName, pricing, modelDetails, model }) => {
+    .then({ modelName, pricing, modelDetails, model }) => {
       //const { modelName, pricing, modelDetails } = data;
 
       let carModel = document.querySelector('.modelName').textContent = modelName;
